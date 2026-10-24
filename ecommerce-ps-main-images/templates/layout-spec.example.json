@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "job_id": "REFERENCE_PAGE_01_V01",
+  "canvas": {"width": 800, "height": 1000, "resolution": 72, "background": "#FAF7F0"},
+  "layers": [
+    {"id": "reference_panel", "type": "rect", "box": [40, 220, 720, 620], "color": "#EEE8DD"},
+    {"id": "product_slot", "type": "image", "source": "../assets/demo-pattern.png", "box": [60, 240, 680, 560], "fit": "cover", "mask_box": [60, 240, 680, 560]},
+    {"id": "reference_title", "type": "text", "text": "COPY THE REFERENCE\nKEEP EXACT LINE BREAKS", "position": [50, 92], "font": "ArialMT", "size": 34, "leading": 44, "tracking": 0, "color": "#18354A", "align": "left", "rotation": -2,
+      "stroke": {"color": "#FFFFFF", "size": 2, "position": "outside"},
+      "shadow": {"color": "#000000", "opacity": 25, "angle": 120, "distance": 3, "blur": 5, "spread": 0}},
+    {"id": "reference_caption", "type": "text", "text": "Replace these demo values with measured reference values.\nThis example is a schema demonstration, not a design template.", "box": [50, 880, 700, 100], "font": "ArialMT", "size": 19, "leading": 26, "tracking": 0, "color": "#18354A", "align": "left"}
+  ]
+}

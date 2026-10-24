@@ -1,0 +1,24 @@
+{
+  "version": "2026.10.17-r5.3",
+  "checked_at": "2026-10-17",
+  "scope": "Conservative user production policy and review hints, not a legal decision or exhaustive platform rules",
+  "rules": [
+    {"id":"absolute_marketing","severity":"block_candidate","basis":"user_policy_and_advertising_review","pattern":"国家级|最高级|最佳|最好|最大|最小|最高|最低|最强|最优|最先进|最安全|最耐用|最受欢迎|最保暖|最暖|最柔软|最舒适|最轻|最薄|最厚|最省钱|最畅销|最火|全网第一|销量第一|世界第一|全国第一|行业第一|第一品牌|第一选择|顶级|顶尖|极致|独一无二|独家首创|全网最低|史上最低|天花板|遥遥领先|独家专利|唯一指定|\\bno\\.?\\s*1\\b|\\bnumber\\s*one\\b|\\bthe\\s+best\\b","action":"Marketing defaults to no use. For specifications or usage limits review context and preserve verified values; do not auto-delete."},
+    {"id":"ranking_or_backing","severity":"needs_evidence","basis":"advertising_truth_and_citation_review","pattern":"首创|首发|领先|第一|唯一|独家|销量冠军|销量领先|销售冠军|热销|爆款|万人好评|零差评|国家认证|国家免检|官方指定|权威认证|专家推荐|医生推荐|专利|检测报告","action":"Check source, scope, date and applicability; do not replace unsupported claims with another unsupported claim."},
+    {"id":"unconditional_guarantee","severity":"block_candidate","basis":"user_policy_and_truth_review","pattern":"绝不|永不|永久|零风险|零刺激|零过敏|百分之百|100\\s*[%％]\\s*(?:防水|保暖|安全|有效|抗菌|杀菌)|不夹头|不掉毛|绝对安全|所有头围|任何头围","action":"Remove unsupported unconditional guarantees; a material percentage alone is not a prohibited claim."},
+    {"id":"functional_claim","severity":"needs_evidence","basis":"product_truth_review","pattern":"恒温|蓄热|内热循环|升温|自发热|防风|防水|防泼水|触屏|抗菌|抑菌|杀菌|防过敏|亲肤无刺激|倍保暖|cyclic\\s+warming|self[- ]heating|constant\\s+temperature","action":"Check actual product evidence and conditions; ordinary functions are not automatically illegal. Check matching icons and all languages."},
+    {"id":"medical_claim","severity":"block_candidate","basis":"nonmedical_product_advertising_review","pattern":"治疗冻疮|治疗关节炎|改善血液循环|促进血液循环|消炎|止痛|治疗|治愈|预防疾病","action":"Ordinary earmuff/glove copy must not imply disease treatment; other product categories require separate rules."},
+    {"id":"unsupported_care_or_waiver","severity":"context_review","basis":"product_instructions_and_consumer_rights_review","pattern":"可机洗|可水洗|可烘干|误差\\s*[0-9一二三]+\\s*[-–至]\\s*[0-9一二三]+\\s*(?:cm|厘米)|最终解释权|概不退换|不退不换|以实物为准|仅供参考|个体有差异","action":"Verify care and tolerance sources; disclaimers cannot negate the main claim or legal consumer rights."},
+    {"id":"offsite_contact","severity":"context_review","basis":"user_cross_platform_policy","pattern":"加微|加V|加v|微信|VX|V信|私下下单|私下交易|扫码下单|站外购买|二维码|https?://|www\\.","action":"Review offsite trade, contact and QR purpose; do not remove genuine traceability/required instructions automatically."}
+  ],
+  "platforms": {
+    "douyin":["抖音","抖店","douyin"],
+    "taobao":["淘宝","taobao"],
+    "tmall":["天猫","tmall"],
+    "pinduoduo":["拼多多","pdd","pinduoduo"],
+    "jd":["京东","jd.com"],
+    "xiaohongshu":["小红书","小红薯","红薯","xhs","rednote"],
+    "kuaishou":["快手","快手小店","kuaishou"],
+    "1688":["1688","阿里巴巴"]
+  }
+}

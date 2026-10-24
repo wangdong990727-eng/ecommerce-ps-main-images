@@ -1,0 +1,20 @@
+{
+  "schema_version": 5,
+  "mode": "strict_replica",
+  "product_profile": {
+    "type": "other",
+    "fact_sources": [],
+    "notes": []
+  },
+  "status": "planning",
+  "scope": {
+    "kinds": [],
+    "expected_page_ids": []
+  },
+  "references": [],
+  "pages": [],
+  "assets": [],
+  "generation_jobs": [],
+  "next_action": "填入本品事实来源、完整同行参考及本次所有页面；模板当前不能通过 plan 检查。",
+  "issues": []
+}
