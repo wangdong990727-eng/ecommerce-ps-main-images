@@ -1,0 +1,33 @@
+{
+  "example_only": true,
+  "assets": [
+    {
+      "id": "model-scene-01",
+      "roles": [
+        "model",
+        "scene"
+      ],
+      "clean_master": "03_模特与场景素材/clean-master.png",
+      "adopted_source": "03_模特与场景素材/model-scene-01.png",
+      "version": "R1",
+      "psd_targets": [
+        {
+          "psd": "02_做图源文件/shared-colours.psd",
+          "variant_id": "colour_a",
+          "group_id": 0,
+          "smart_object_id": 0,
+          "frame_px": [
+            0,
+            0,
+            800,
+            1000
+          ]
+        }
+      ],
+      "unsplit_components": [
+        "model_and_worn_product"
+      ],
+      "note": "IDs and pixel frame are placeholders; inspect actual PSD. Render mapping into final report, not a separate process handoff."
+    }
+  ]
+}

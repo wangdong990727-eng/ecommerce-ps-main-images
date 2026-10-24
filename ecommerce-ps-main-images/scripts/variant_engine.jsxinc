@@ -1,0 +1,46 @@
+// Native layers only. No generation, recolouring or name-only selection.
+var EV=(function(){
+function fail(t){throw Error(t);}
+function inspect(parent){var r={text:0,smart:0,linked:0,layers:[]};function walk(p){for(var i=0;i<p.layers.length;i++){var l=p.layers[i];if(l.typename==='LayerSet'){walk(l);continue;}var row=EC.layerEvidence(l);row.id=l.id;r.layers.push(row);if(l.kind===LayerKind.TEXT)r.text++;if(l.kind===LayerKind.SMARTOBJECT){r.smart++;if(row.linked)r.linked++;}}}walk(parent);return r;}
+function minimum(parent,v){var r=inspect(parent);if(r.text<v.min_text_layers||r.smart<v.min_smart_objects||r.linked)fail('Native-layer minimum or embedded-only check failed: '+v.id);return r;}
+function openOwned(path,owned){var f=new File(path);for(var i=0;i<app.documents.length;i++){try{if(app.documents[i].fullName.fsName===f.fsName)fail('Source is already open; preserve user document and close it manually before this job: '+f.fsName);}catch(e){if(String(e.message).indexOf('Source is already open')===0)throw e;}}var d=app.open(f);owned.push(d);return d;}
+function closeOwned(d,owned){for(var i=owned.length-1;i>=0;i--)if(owned[i].id===d.id){owned.splice(i,1);break;}d.close(SaveOptions.DONOTSAVECHANGES);}
+function exportJpg(d,path){var f=new File(path);if(f.exists)fail('Export exists: '+path);var o=new JPEGSaveOptions();o.quality=11;o.embedColorProfile=true;d.saveAs(f,o,true,Extension.LOWERCASE);}
+function visibilityTree(p){var a=[];for(var i=0;i<p.layers.length;i++){var l=p.layers[i];a.push({visible:l.visible,children:l.typename==='LayerSet'?visibilityTree(l):null});}return a;}
+function restoreVisibility(p,a){if(p.layers.length!==a.length)fail('Copied layer tree differs');for(var i=0;i<a.length;i++){p.layers[i].visible=a[i].visible;if(a[i].children)restoreVisibility(p.layers[i],a[i].children);}}
+function groupById(d,id){for(var i=0;i<d.layers.length;i++)if(d.layers[i].id===id&&d.layers[i].typename==='LayerSet')return d.layers[i];fail('Missing unique top-level group ID '+id+'; do not guess using colour names or copy suffixes');}
+function run(job){var state=EC.begin(),owned=[],out=new Folder(job.output_dir),status=new File(out.fsName+'/status.json'),result={status:'error',operation:job.operation,variants:[],visual_review:'NOT_RUN',user_adoption:'NOT_RUN'},d=null;try{
+ if(status.exists)fail('Status exists; refuse stale job');
+ var groups=[],i,j,v,g,source,blank;
+ if(job.operation==='build'){
+  for(i=job.variants.length-1;i>=0;i--){v=job.variants[i];source=openOwned(v.source_path,owned);var sourceVisibility=visibilityTree(source);if(source.mode!==DocumentMode.RGB||source.bitsPerChannel!==BitsPerChannelType.EIGHT)fail('Build currently requires RGB 8-bit inputs');minimum(source,v);
+   if(!d){d=app.documents.add(source.width.as('px'),source.height.as('px'),source.resolution,'Shared variants',NewDocumentMode.RGB,DocumentFill.TRANSPARENT);owned.push(d);blank=d.layers[0];}
+   if(d.width.as('px')!==source.width.as('px')||d.height.as('px')!==source.height.as('px')||d.resolution!==source.resolution)fail('Colour canvas/resolution differs; no automatic resizing');
+   if(source.colorProfileName!==d.colorProfileName)fail('Colour profile differs; explicitly normalize task copies before merging');
+   app.activeDocument=d;g=d.layerSets.add();g.name='VARIANT['+v.id+'] '+(v.label||v.id);g.blendMode=BlendMode.PASSTHROUGH;
+   for(j=source.layers.length-1;j>=0;j--){app.activeDocument=source;var l=source.layers[j],vis=l.visible;var copied=l.duplicate(d,ElementPlacement.PLACEATBEGINNING);app.activeDocument=d;copied.move(g,ElementPlacement.INSIDE);copied.visible=vis;}
+   restoreVisibility(g,sourceVisibility);groups.push({variant:v,group:g,visibility:sourceVisibility});closeOwned(source,owned);
+  }
+  app.activeDocument=d;blank.remove();
+ }else{
+  d=openOwned(job.source_path,owned);
+  if(d.layers.length!==job.variants.length)fail('Unaccounted top-level layers/groups: inspect old colour, duplicate image or shadow residue before export');
+  for(i=0;i<job.variants.length;i++){v=job.variants[i];g=groupById(d,v.group_id);minimum(g,v);groups.push({variant:v,group:g});}
+ }
+ // Every colour is exported from the same canvas; never stack colours on canvas.
+ var jpg=new Folder(out.fsName+'/JPG');EC.ensureFolder(jpg);
+ for(i=0;i<groups.length;i++){
+  for(j=0;j<groups.length;j++){if(groups[j].visibility)restoreVisibility(groups[j].group,groups[j].visibility);groups[j].group.visible=(i===j);}
+  app.activeDocument=d;v=groups[i].variant;var image=jpg.fsName+'/'+v.id+'.jpg';exportJpg(d,image);
+  result.variants.push({id:v.id,label:v.label||v.id,group_id:groups[i].group.id,jpg:image,inspection:minimum(groups[i].group,v),source_asset_ids:v.source_asset_ids||[],semantic_colour_check:'NOT_RUN'});
+ }
+ for(i=0;i<groups.length;i++){if(groups[i].visibility)restoreVisibility(groups[i].group,groups[i].visibility);groups[i].group.visible=(groups[i].variant.id===job.initial_visible);}
+ if(job.operation==='build'){
+  var psd=new File(out.fsName+'/shared-colours.psd');if(psd.exists)fail('Shared PSD exists');var po=new PhotoshopSaveOptions();po.layers=true;po.embedColorProfile=true;d.saveAs(psd,po,true,Extension.LOWERCASE);result.psd=psd.fsName;
+ }
+ result.canvas=[d.width.as('px'),d.height.as('px')];result.status='complete';
+ }catch(e){result.error=String(e.message);result.line=e.line;}finally{for(var k=owned.length-1;k>=0;k--)try{owned[k].close(SaveOptions.DONOTSAVECHANGES);}catch(ignore){}EC.end(state);if(!status.exists)EC.writeJson(status.fsName,result);}
+ return result;
+}
+return {run:run,inspect:inspect};
+})();

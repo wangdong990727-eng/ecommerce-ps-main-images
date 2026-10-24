@@ -95,3 +95,8 @@ references中的详情参考按已核对的阅读次序排列；严格复刻会�
 每页展示参考和结果并排、文案差异、四项证据、审批状态；叠加滑块调整结果透明度。两图按同宽等比缩放且顶部对齐，宽高比不同会明示，绝不把结果强行拉伸成参考。多参考逐个对照，不把九宫格代替完整页面验收。
 
 HTML 文本和属性转义；材料 URL 仅来自项目内复制文件。脚本不执行项目 JSON 中的命令。每次改稿重新生成报告，避免审阅旧快照。
+
+
+## R5.4增量
+
+R5.4兼容补充：顶层workflow.operation可为strict_replica/adapt/new_main_design/local_retouch/shared_color_template；原mode仍仅三种并按入口表映射。模板task-plan.json新增workflow。page.review_axes记录person/product/wear_scale/copy/layout/color六维及版本证据；第七维用户采用只用既有user_approval，不复制第二份批准。新增模板revision-record.example.json用于格式示例，不自动批准。旧project_tools.py仍只检查既有四项checks；新增六维与母版/保护区/色组需实际核查，旧脚本PASS不证明新维度通过。制作期间保留必要检查，商品交付目录与完成后过程清理以delivery-handoff.md为准。

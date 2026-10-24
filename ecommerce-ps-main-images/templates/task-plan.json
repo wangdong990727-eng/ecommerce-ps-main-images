@@ -16,5 +16,10 @@
   "assets": [],
   "generation_jobs": [],
   "next_action": "填入本品事实来源、完整同行参考及本次所有页面；模板当前不能通过 plan 检查。",
-  "issues": []
+  "issues": [],
+  "workflow": {
+    "operation": "strict_replica",
+    "parent_mode": "strict_replica",
+    "delivery_profile": "lean_with_assets"
+  }
 }

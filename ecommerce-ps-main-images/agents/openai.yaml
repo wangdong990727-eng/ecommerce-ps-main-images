@@ -1,4 +1,4 @@
 interface:
-  display_name: "电商严格复刻 R5.3"
+  display_name: "电商主图与详情 R5.4"
   short_description: "锁定参考文字、版式和视觉手法，核对手套耳罩实物，交付可编辑PSD及逐页对照"
   default_prompt: "使用 $ecommerce-ps-main-images，锁定本次参考的顺序、排版和展示逻辑，保留适合本品的表达并替换品牌、事实和受保护素材；先锁版再填已确认商品资产，完成可编辑PSD和对照验收。"

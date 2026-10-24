@@ -1,0 +1,1 @@
+请从 https://github.com/wangdong990727-eng/ecommerce-ps-main-images 安装技能 ecommerce-ps-main-images，仓库内路径 ecommerce-ps-main-images，版本ref使用r5.4。先确认你的GitHub账号/连接器能访问这个私有仓库，读取该ref下的SKILL.md并核对2026.10.24-r5.4；检测实际技能根目录，备份搜索路径内旧同名技能，再只安装本技能，不覆盖其他技能或商品文件。安装后验证文件、Python/PS/字体/工具能力，不自动安装无关环境；实际PS与商品测试未做就标未测。下一轮用 $ecommerce-ps-main-images 调用。缺访问权请明确提示，不索要明文密码或Token。

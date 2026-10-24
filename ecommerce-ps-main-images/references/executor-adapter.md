@@ -22,7 +22,7 @@ Python标准库用于项目记录/报告/布局编译，长图拼接需Pillow，
 
 本包的 `ecommerce-ps-main-images/` 是技能根，里面必须直接有SKILL.md及其references/scripts/templates。不能只复制SKILL.md；不能多嵌套一层同名目录。安装前备份目标旧版到技能搜索路径之外；不要在可发现目录留两个同name版本。仅修改用户本次授权的技能，不覆盖宿主全局设置或其他技能。
 
-- Codex：使用当前实际技能根目录（以会话技能目录或CODEX_HOME配置为准），开启新聊天后核对读到版本 `2026.10.17-r5.3`。`agents/openai.yaml`只是Codex界面元数据，其他宿主无需依赖它。
+- Codex：使用当前实际技能根目录（以会话技能目录或CODEX_HOME配置为准），开启新聊天后核对读到版本 `2026.10.24-r5.4`。`agents/openai.yaml`只是Codex界面元数据，其他宿主无需依赖它。
 - WorkBuddy：官方说明支持“添加技能→上传技能”导入本地技能包；可导入本包纯技能ZIP。项目级使用时官方项目说明列出 `.codebuddy/skills/`。若目标版本UI不同，先检查本机入口，不能假装已安装。来源：[技能](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)、[项目](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Project)。
 - DeepSeek Harness：官方源码文档列出项目 `.dsh/skills/`、`.agents/skills/`及用户/自定义技能源；推荐本次测试放项目 `.dsh/skills/ecommerce-ps-main-images/`，确认宿主已启用本地技能与skill加载能力。项目源优先于用户源，要查同名旧技能。来源：[官方技能子系统](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.md)。
 
@@ -35,3 +35,8 @@ Python标准库用于项目记录/报告/布局编译，长图拼接需Pillow，
 启动续接先读 `next_action`、issues、现有文件与各页版本；核对文件实际存在和生成状态，不依据旧助手一句“已完成”。保留通过素材，只执行未完成或受反馈影响的阶段。同一PS只有一个写入任务。
 
 最终明确区分：技能可读取、脚本校验通过、本机PS运行通过、某商品视觉验收通过、另一宿主整套实测通过。没有对应证据就写未测，不因JSON有效或说明可读声称“所有软件稳定复刻”。
+
+
+## R5.4增量
+
+R5.4增量：当前版本2026.10.24-r5.4。跨机继续重新检测实际PS、字体、控制工具与依赖，不自动安装无关环境。Git安装/升级/回滚按git-versioning.md，私有仓库需授权账号；不得把Git拉取或静态编译说成另一台电脑实际PS通过。

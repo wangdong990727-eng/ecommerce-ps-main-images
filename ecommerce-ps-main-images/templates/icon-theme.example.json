@@ -1,0 +1,13 @@
+{
+  "style": {"color":"#272727", "stroke":2, "corner_radius":14},
+  "features": [
+    {"id":"keep_warm", "label":"KEEP WARM", "fact_source":""},
+    {"id":"anti_slip_palm", "label":"ANTI-SLIP PALM", "fact_source":""},
+    {"id":"touchscreen", "label":"TOUCHSCREEN COMPATIBLE", "fact_source":""},
+    {"id":"water_resistant", "label":"WATER RESISTANT", "fact_source":""},
+    {"id":"windproof", "label":"WINDPROOF", "fact_source":""},
+    {"id":"fleece_lined", "label":"FLEECE LINED", "fact_source":""},
+    {"id":"stretch_cuff", "label":"STRETCH CUFF", "fact_source":""},
+    {"id":"machine_washable", "label":"MACHINE WASHABLE", "fact_source":""}
+  ]
+}

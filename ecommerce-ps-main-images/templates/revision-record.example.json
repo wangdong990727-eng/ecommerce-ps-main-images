@@ -1,0 +1,66 @@
+{
+  "example_only": true,
+  "version": "R_next",
+  "operation": "local_retouch",
+  "clean_master": {
+    "path": "assets/clean-master.png",
+    "sha256": "TO_FILL"
+  },
+  "current_pass": {
+    "path": "assets/current-pass.png",
+    "sha256": "TO_FILL"
+  },
+  "user_psd_snapshot": "snapshots/current-user-edit/snapshot.json",
+  "edit_scope": {
+    "change": [
+      "ear_pad_scale"
+    ],
+    "protect": [
+      "person_identity",
+      "product_texture",
+      "background"
+    ],
+    "allowed_mask": "masks/allowed-edit.png",
+    "diff_evidence": "evidence/protected-diff.json"
+  },
+  "review_axes": {
+    "person": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    },
+    "product": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    },
+    "wear_scale": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    },
+    "copy": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    },
+    "layout": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    },
+    "color": {
+      "status": "not_run",
+      "version": "R_next",
+      "evidence": [],
+      "observations": []
+    }
+  },
+  "user_adoption_source": "project-state.json page.user_approval",
+  "unsplit_components": []
+}

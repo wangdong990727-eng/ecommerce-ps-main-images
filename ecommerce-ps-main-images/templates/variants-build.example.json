@@ -1,0 +1,27 @@
+{
+  "initial_visible": "colour_a",
+  "variants": [
+    {
+      "id": "colour_a",
+      "label": "Color A",
+      "source_psd": "sources/colour-a.psd",
+      "source_asset_ids": [
+        "real-photo-a",
+        "model-master"
+      ],
+      "min_text_layers": 1,
+      "min_smart_objects": 1
+    },
+    {
+      "id": "colour_b",
+      "label": "Color B",
+      "source_psd": "sources/colour-b.psd",
+      "source_asset_ids": [
+        "real-photo-b",
+        "model-master"
+      ],
+      "min_text_layers": 1,
+      "min_smart_objects": 1
+    }
+  ]
+}

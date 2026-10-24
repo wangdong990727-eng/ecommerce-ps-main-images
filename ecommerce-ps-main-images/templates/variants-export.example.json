@@ -1,0 +1,18 @@
+{
+  "source_psd": "delivery/shared-colours.psd",
+  "initial_visible": "colour_a",
+  "variants": [
+    {
+      "id": "colour_a",
+      "group_id": 1,
+      "min_text_layers": 1,
+      "min_smart_objects": 1
+    },
+    {
+      "id": "colour_b",
+      "group_id": 2,
+      "min_text_layers": 1,
+      "min_smart_objects": 1
+    }
+  ]
+}

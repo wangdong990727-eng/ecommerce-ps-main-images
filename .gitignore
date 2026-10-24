@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+*.key
+*.pem
+/projects/
+/deliveries/
+/verification/
+*.psd
+*.psb
+*.jpg
+*.log
